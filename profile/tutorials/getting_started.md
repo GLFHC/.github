@@ -101,3 +101,5 @@ somewhere you remember) with a name such as “/gitclones” this will be the pl
 when git is managing them; you can have them anywhere, but trust me you want them in a folder. If you have existing
 projects we will get to that in a moment, leave them where they are for a bit.
 
+## Next
+View [Creating your First Repo Tutorial](create_first_repo.md)
