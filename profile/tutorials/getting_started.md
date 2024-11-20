@@ -3,7 +3,8 @@
 ### [Henry Feldman, MD](mailto://hfeldman@glfhc.org)
 
 This document is designed to give a quick overview on how to use GitHub to manage project files
-to help development here at GLFHC. This document assumes some basic technical knowledge but not necessarily deep devops
+to help development here at **GLFHC**, you will find many tutorials online are solving a much larger problem that we typicall face.
+That being said, _doing it right_ is still a good idea. This document assumes some basic technical knowledge but not necessarily deep devops
 knowledge. GitHub is a very complex environment and can do a lot! since this is a quick start it will not cover
 everything that you might need, but there are _many, many_ online tutorials. We will start with a quick overview of what
 git is and why use GitHub (and what _git_ vs. _github_ is), and I will attempt to de-mystify some of the strange terms
@@ -77,9 +78,12 @@ installed (on MacOS if you install Xcode [free] it will auto install git the fir
 probably
 preinstalled (if unsure open a terminal window and simply type git —version), windows may or may not have it installed.
 Most modern IDEs (development environments) such as [visual studio code](https://code.visualstudio.com)
-or [eclipse](https://www.eclipse.org) have built in git support and may
-install the client for you. Now you probably don’t want the command line git client for daily work (it is very powerful
-but obtuse), so what you probably want to install is the [GitHub desktop](https://github.com/apps/desktop) tool which
+or [eclipse](https://www.eclipse.org) and even [Microsoft SQL Server Management Studio](https://www.google.com/url?sa=t&source=web&rct=j&opi=89978449&url=https://learn.microsoft.com/en-us/sql/ssms/sql-server-management-studio-ssms%3Fview%3Dsql-server-ver16&ved=2ahUKEwjJ96Gw0OuJAxUyFFkFHVbjCIAQFnoECBYQAQ&usg=AOvVaw0M5QjLuC1rwEoQkPcaH0Jp) have built in git support and may
+install the client for you; note if you only every. This allows you to make your commit and pushes without leaving your tool. For SQL scripts,
+which are in reality a simple text file, basically just save the file to a directory within a git repository.
+
+Now you probably don’t want the command line git client for daily work (it is very powerful
+but obtuse, and might be required if something goes wrong), so what you probably want to install is the [GitHub desktop](https://github.com/apps/desktop) tool which
 you get on GitHub.com (free), and you
 want this even if you use the client in your IDE, I strongly recommend you get this tool, as it provides a very clear
 preview of the state of your changes and ability to see conflicts better than most IDEs do. You will also need to make a
@@ -100,6 +104,28 @@ There is “proper” way to set up your machine, and what most people do is cre
 somewhere you remember) with a name such as “/gitclones” this will be the place where all your managed repositories live
 when git is managing them; you can have them anywhere, but trust me you want them in a folder. If you have existing
 projects we will get to that in a moment, leave them where they are for a bit.
+
+## Do we really need all this at GLFHC
+The short version is an unqualified, sort-of. The reason there is no clear yes or no, is github is one of those, you
+get out what you put in, situations. There are a bunch of features that while seemingly for much larger and complex projects
+that we typically engage in, can provide safety and reliability even in small projects. A perfect example is CVE scanning (vulnerability)
+where in projects based on languages (other than SQL) will check to make sure there are no included libraries with known threats. If you recall
+the panic when a major CVE was found in slf4j that is embedded in many projects. These risks can be mitigated by using github's 
+CVE checking.
+
+Many of our projects are single developer (as in one person working on a single long SQL script) and you might ask why you need
+to do a lot of the work that goes into multi-programmer projects, like [branching](forking_and_branching.md ) when you won't
+need to merge multiple developers' code together. The answer is everyone at one point made a change that broke the application.
+You wanted to roll back in time and get back to a functional state. Or in case of a security risk or bug being able to go back through
+various phases of a project and see what changes are made. Branching works very well to make a single developer's life easier in both
+tracking down a change you regret. Another one that single developers or even tiny teams often don't want to use are issues (tickets),
+and while it seems silly when it's just you, one feature that issues bring is that they can drive automatic release notes. Even for projects
+like SQL projects issues are very helpful for release notes.
+
+It is also important to remember even a single SQL script might outlast a single developer in the organization, as role change, so
+a future developer gets to benefit from all the information in the repository for all the branches in the history of the code. Another reason is while
+your code is seemingly independent, other may want to benefit from the work, and extend your work in their own projects,
+and github lets this happen (this is known as a [fork](forking_and_branching.md))
 
 ## Next
 View [Creating your First Repo Tutorial](create_first_repo.md)

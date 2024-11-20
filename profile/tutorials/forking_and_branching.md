@@ -10,7 +10,10 @@ organizations they
 have a common code library and this is the core of any new project so that is a repository you fork to your own project
 and when doing so you can decide to fork it linked or unlinked. Linked means the changes to the original will be
 propagated to your code (helpful) or unlinked means they will not automatically arrive (which may be important).
-This depends on the type of project you are working on. Forking is done at the _start_ of any project.
+This depends on the type of project you are working on. Forking is done at the _start_ of any project. This allows you
+to reuse code written by someone else. It also lets a group of projects get built identically (via templates which are basically
+just repositories marked as templates, that normal users are only allowed to fork a copy for themselves). Forking can be hierarchical
+so you can create a base GLFHC template that then has sub variants like GLFHC-SQL, GLFHC-Python, etc. 
 
 Branching is something you **constantly** do. A branch is when you say, hey my code is working as is, and I would like
 to stick a marker on this current state in case I break things, but I need to make a
@@ -79,6 +82,43 @@ select the branch menu at the top). Under that you will see all branches in the 
 branched (theoretically you can track changes without branching in which case there is no merging needed). However assuming we created
 a banch that has changes, lets assume the branch is called "New_Inventory_Report"
 
-At the very top of the screen you see a yellow banner suggesting changes exist (implied is not merged). It will look something like
+Step 1 is to select the branch to merge **from**.
+At the very top of the screen you see a yellow banner suggesting changes exist in a branch (implied that are not merged). It will look something like
 this:
+
+![Compare and Pull](images/compare_and_pull.png "Compare and Pull")
+
+Next you need to select the destination branch (the base branch), in our case let's select merge into **Main**. Optionally if
+there are no conflicts you can review the files. You should always do this step, first to verify the changes are what you expected, and to spot
+any last minute mistakes. Remember conflicts are purely text editing conflicts not code level conflicts. It has no idea
+that you said X is an integer and then 4 lines later treat it as a string, that is in your development environment's functionality (we will get to atuomatic validation in a bit). 
+When you are presented with a conflict during this process you resolve them (important: when git (and other SCCS) identify conflicts they actually label them in the code (you will find >>> mine) or something
+in your code. Those all have to be stripped since they are likely syntax errors in the code.) In large software
+teams, typically a specific person is designated the only person permitted to perform a pull request, since the consequences 
+of bad merging can break the entire team, in general you should do something similar within your group to make sure you don't
+convince yourself that a conflict isn't important.
+
+## Creating a template for my team
+You have a perfect project you wish to create a template from, before that we need to understand what a template is and what it is used
+for in a github context. A template is not the same as a common library or tool, it basically allows you to create a git repo
+with the structure and features you wish from a generic project. This means if you want every project for a given team to be set up the same
+way, including contents (you can include base code) this is a great way to set it up. This is a privileged function, which will help prevent
+the chaos of everyone creating every template to the point nobody remembers what each one does. 
+
+For all practical purposes a template has all the same features as a regular repository, including branches and everything else,
+except that by being promoted to being a template it will be in the list of available templates when a user in the organization
+creates their own new repository. 
+
+- [create a repo](create_first_repo.md) like any other repo
+- set up all the base features you want in your project (files, folders, etc)
+- Commit and push the repo like any other.
+- IN the web interface select setttings (the gear all the way to the right) select Template Repository
+
+![Template Repo](images/template_repo.png "Template Repository Setting")
+
+## Using a template to make a new repository
+Using a repository template is almost easier than creating one, navigate into the template repository you want to use,
+at the top right is a **Use This Template** drop-down and select "**Create a new repository**"
+
+![Using a Template](images/use_template.png "Using a Template Repository")
 
