@@ -6,3 +6,4 @@ If you need internal help for our github repository, contact [Henry Feldman](mai
 
 # Tutorials
 - [Getting Started](tutorials/getting_started.md)
+- [Table of contents](tutorials/toc.md)
