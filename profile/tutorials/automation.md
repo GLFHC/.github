@@ -2,8 +2,8 @@
 
 ## Automating busy work
 
-Github has lots of automatic functions built in that are designed to perform repetitive tasks for the user.
-There are over 13,000 automation functions in Github. You will find them under Github Actions. Of course many of
+GitHub has lots of automatic functions built in that are designed to perform repetitive tasks for the user.
+There are over 13,000 automation functions in GitHub. You will find them under GitHub Actions. Of course many of
 them solve problems that only large software projects have. The majority you want are under the "CI/CD group" (Continuous Integration/Continuous Deployment)
 
 Example functions that are useful in the GLFHC environment
@@ -14,12 +14,39 @@ are:
 - Automated unit testing (UnitTest action)
 - Conection to other APIs (such as support ticket systems)
 - Key Leakage scanning
-- Automated Container Deployment (Docker, etc)
+- Automated Container Deployment (Docker, etc.)
 
 These functions are built into GitHub, and can do things like show the status of a build/unit test in the header as in
 the image below
 
 ![Status of Action](images/github_action_status.png "Display Action Status")
+
+Here is a failure (deliberate)
+![Status of Failed Action](images/failed_action.png "Display Failed Action Status")
+
+#### Diagnosing Failures
+Note: "failing" doesn't mean you have a terrible programmer, anything other than "success" is considered a fail to GitHub (there is no "warning").
+
+To diagnose what happened, go to the actions tab, and look at the runs (if you just did it, there might only be one run)
+
+![Run List](images/run_fail.png "Run Failure")
+
+Clicking on the red one will bring up that run's details. In the details you see the tasks you configured in your script (see below, in this case since I lumped everything under "build")
+I only see one failure:
+
+![Build Failure](images/build_fail.png "Build Failure")
+
+Under build, you will see the steps that ran and what stopped the test (no I don't know why it is showing in dark theme)
+
+![Failure Explanation](images/fail_explanation.png "Explain Failure")
+
+What we see here is the Black library didn't like some formatting in 3 of my modules (ironically including my automated unit tests, sigh...)
+
+In the YAML file we build below, it is very important to use clear names for each step in the run, since that is what is shown here.
+There are some oddities in black which very strictly enforces 
+
+
+
 
 The automation available in the Actions tab of your repository takes you to the actions available for the project.
 Actions are _configured_, not _programmed_ (although your code obviously needs to be designed for the action.
@@ -33,10 +60,10 @@ interface callable by the compiler to perform basic testing and validation
 (checks for basic regression errors like calling a function with the wrong
 argument type). Unit Tests mostly all obey the interface from Java's Junit
 library (Python's unit testing library does as well). Unit Tests can be manually
-executed in your IDE or executed on commit to github.
+executed in your IDE or executed on commit to GitHub.
 
-For our example, when code is put into the Main branch (either directly or via a Pull Request (merge)) Github will run the pacakge unit
-tests which will test a test data set against the code to make sure all expected output happens. In addition it will
+For our example, when code is put into the Main branch (either directly or via a Pull Request (merge)) GitHub will run the pacakge unit
+tests which will test a test data set against the code to make sure all expected output happens. In addition, it will
 test this against a list of versions of python to make sure it is compatible. The script is controlled via a [YAML](https://en.wikipedia.org/wiki/YAML)
 file. Note this script is what produces the status badge at the top. The unit tests also execute the [Dependabot GitHub
 vulnerability scanner](https://github.com/dependabot), so passing also means no CVEs were noted in the dependencies.
@@ -53,7 +80,7 @@ When you find the python package one, select configure, and you will see a YAML 
 
 ## YAML file configuring an action
 Below we see a YAML file from the [Athena Macro Utility project](https://github.com/GLFHC/macro_render/tree/main), where you
-can see the entire workflow in action. This workflow is stored in the .github/workflows folder off the root of your project. 
+can see the entire workflow in action. This workflow is stored in the _.github/workflows_ folder off the root of your project. 
 The YAML file must be in there.
 
 Details at end
@@ -87,14 +114,26 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flake8 pytest
+        python -m pip install flake8 pytest black mypy isort
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Check formatting using black
+      run: black --force-exclude="test_macro.txt" --check .
     - name: Lint with flake8
       run: |
-        # stop the build if there are Python syntax errors or undefined names
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        # stop the build if there are Python syntax errors or undefined names, ignore to not fight with Black
+        flake8 . --count --select=E9,F63,F7,F82 --extend-ignore=E203,E501,E701 --show-source --statistics
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+    - name: Check type hinting using mypy
+      run: |
+           mypy macro_util.py
+           mypy macro_test.py
+           mypy module_unit_test.py
+    - name: Check import order using isort
+      run: |
+          isort --check-only macro_util.py
+          isort --check-only macro_test.py
+          isort --check-only module_unit_test.py
     - name: Test with UnitTest
       run: |
         python -m unittest discover -s .
@@ -143,3 +182,4 @@ which will look like:
 ## The badge
 That badge can indicate the union of all of the Steps in the YAML file. If any fail the total status is failed (a red badge).
 
+Suggested Next: [How to validate SQL code projects](sql_validation.md) using the above

@@ -122,3 +122,4 @@ at the top right is a **Use This Template** drop-down and select "**Create a new
 
 ![Using a Template](images/use_template.png "Using a Template Repository")
 
+Suggested Next: [Automating Github](automation.md)

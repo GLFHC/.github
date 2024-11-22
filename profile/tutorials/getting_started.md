@@ -2,12 +2,12 @@
 
 ### [Henry Feldman, MD](mailto://hfeldman@glfhc.org)
 
-This document is designed to give a quick overview on how to use GitHub to manage project files
+This document is designed to give a quick overview (don't be intimidated by the size, feel free to just skip to relevant parts) on how to use GitHub to manage project files
 to help development here at **GLFHC**, you will find many tutorials online are solving a much larger problem that we typicall face.
 That being said, _doing it right_ is still a good idea. This document assumes some basic technical knowledge but not necessarily deep devops
 knowledge. GitHub is a very complex environment and can do a lot! since this is a quick start it will not cover
 everything that you might need, but there are _many, many_ online tutorials. We will start with a quick overview of what
-git is and why use GitHub (and what _git_ vs. _github_ is), and I will attempt to de-mystify some of the strange terms
+git is and why use GitHub (and what _git_ vs. _GitHub_ is), and I will attempt to de-mystify some of the strange terms
 git
 uses.
 
@@ -33,7 +33,7 @@ you
 have many editors of a document and Word does not worry if one
 user clobbers another users content, and each one needs to wait while someone else edits that document, but having an
 entire team operating in a serial fashion where each person waits on the person before is very inefficient. Other
-editors such as google docs permit track changes across multiple simultaneous users, and anyone who has used this
+editors such as Google Docs permit track changes across multiple simultaneous users, and anyone who has used this
 feature knows how chaotic it gets as the screen is live updating and the text you’re editing is moving.
 
 When writing executable code (whether SQL, python or Java it is very easy to make a conflicting edit (e.g. you
