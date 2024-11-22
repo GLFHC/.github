@@ -195,7 +195,7 @@ The first line to modify is
 ```
 to now read:
 ```YAML
-        python -m pip install flake8 pytest sqlvalidator
+        python -m pip install flake8 pytest sqlfluff
 ```
 
 Now we need to add a step to run the validator
