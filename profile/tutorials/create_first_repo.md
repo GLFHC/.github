@@ -51,6 +51,14 @@ Once you have written the README.md (honestly write a chunk before you lay your 
 you should comit (please write a short comment) it to git (I see you are confused since nothing changed when you refreshed the webpage, because you only comittted
 it to your local drive's copy of the database, you need to "**push origin**" to tell it to upload, once that finishes, when you refresh the web page it changed).
 
+## Ignoring Unwanted Files
+Anyone who has done any quantity of software development knows the detritus that ends up in the project folders from the 
+development process (cached compilations, .ini files, settings, IDE files, etc.) are all things that need to NOT be checked in.
+When committing to the repo, you could select only the files you want to the repo, but who has time for that (and believe me you will check in one of these at one point)
+you can add file patterns to the .gitignore file, which if you selected an appropriate one when you created the repository 
+will prevent certain files from being seen by git. **Important**: once a file is checked in, it cannot be ignored. You can put directory
+names in .gitignore and it will ignore all the contents below that. Very important to do this as many of those files are specific
+to your machine and will confuse another user's IDE.
 
 ## Next
 View [Forking and Branching](forking_and_branching.md)

@@ -9,12 +9,12 @@
     -   [Do we really need all this at
         GLFHC](getting_started.md/#do-we-really-need-all-this-at-glfhc)
     -   [Next](getting_started.md/#next)
-    -   [GLFHC Creating Your First Repo
-    guide](create_first_repo.md)
+-   [**GLFHC Creating Your First Repo
+    guide**](create_first_repo.md)
     -   [Easiest Way to Create a Repo](create_first_repo.md/#easiest-way-to-create-a-repo)
     -   [How to use the README.md](create_first_repo.md/#how-to-use-the-readme.md)
+    -   [Ignoring Unwanted Files](create_first_repo.md/#ignoring-unwanted-files)
     -   [Next](create_first_repo.md/#next)
-    - 
 -   [**GLFHC Forking and Branching
     guide**](forking_and_branching.md)
     -   [Forking and Branching](forking_and_branching.md/#forking-and-branching)
@@ -40,3 +40,14 @@
     -   [Usage](sql_validation.md/#usage)
         -   [Pure SQL file](sql_validation.md/#pure-sql-file)
         -   [Embedded SQL in python](sql_validation.md/#embedded-sql-in-python)
+-   [**Actual GitHub Workflow at GLFHC**](workflow.md)
+    -   [Install Git if not on your
+        computer](workflow.md/#install-git-if-not-on-your-computer)
+    -   [Existing Code Which Currently is Not in
+        GitHub](workflow.md/#existing-code-which-currently-is-not-in-github)
+    -   [what to change in a template](workflow.md/#what-to-change-in-a-template)
+        - [Documentation](workflow.md/#Documentation)
+        - [.github/workflows](workflow.md/#githubworkflows)
+        - [README.md](workflow.md/#readmemd)
+    -   [How to Commit](workflow.md/#how-to-commit)
+    -   [Autommated Testing](workflow.md/#autommated-testing)
