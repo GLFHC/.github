@@ -5,4 +5,5 @@ Welcome to using github here at GLFHC. For folks new to using git and github, or
 If you need internal help for our github repository, contact [Henry Feldman](mailto://hfeldman@glfhc.org)
 
 # Tutorials
-- [Getting Started](tutorials/getting_started.md)
+- [Getting Started](profile/tutorials/getting_started.md)
+- [Table of contents](profile/tutorials/toc.md)
