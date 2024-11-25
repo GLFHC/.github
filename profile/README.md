@@ -11,6 +11,13 @@ Tutorial [Table of Contents here](tutorials/toc.md)
 
 ## Getting Help
 If you need help for github (such as settings) contact [Henry Feldman](mailto://hfeldman@glfhc.org)
+
+## GLFHC Repo templates
+There are repository templates for different types of projects. The tutorial to use templates is found [here](forking_and_branching.md) to create repositories with standard features.
+
+- **For SQL only projects:** [sql_project_template](https://github.com/GLFHC/sql_project_template)
+- **for Python Projects:** [python_project_template](https://github.com/GLFHC/python_project_template)
+
 <!--
 
 **Here are some ideas to get you started:**
