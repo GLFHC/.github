@@ -49,3 +49,6 @@ which is exactly true in git, but now that you comitted the transaction it's onl
 ## Autommated Testing
 See the [automation page](automation.md) for details (this is a huge topic) as it describes how to 
 modify the workflows YAML script to execute validation scripts
+
+## Next
+View [Adding Collaborators to the project](collaboration.md)

@@ -51,3 +51,34 @@
         - [README.md](workflow.md/#readmemd)
     -   [How to Commit](workflow.md/#how-to-commit)
     -   [Autommated Testing](workflow.md/#autommated-testing)
+-   [**Sharing a repository**](#collaboration.md)
+    -   [Adding other contributors to your
+        Repository](collaboration.md/#adding-other-contributors-to-your-repository)
+    -   [Never Share Respository Files
+        Directly](collaboration.md/#never-share-respository-files-directly)
+    -   [Adding A User](collaboration.md/#adding-a-user)
+        -   [Collaborators And Teams](collaboration.md/#collaborators-and-teams)
+        -   [User Access Management](collaboration.md/#user-access-management)
+        -   [User Privileges](collaboration.md/#user-privileges)
+-   [**Managing Non-Code Files in
+    GitHub**](noncode_files.md)
+    -   [What Non-Code Files Means](noncode_files.md/#what-non-code-files-means)
+    -   [Can I Manage Any File in my
+        Repository?](noncode_files.md/#can-i-manage-any-file-in-my-repository)
+        -   [Binary Files That You Should
+            Manage](noncode_files.md/#binary-files-that-you-should-manage)
+        -   [Using Binary Documents in Markdown in the
+            Repository](noncode_files.md/#using-binary-documents-in-markdown-in-the-repository)
+        -   [Binary Files related to Code, You Don’t
+            Want](noncode_files.md/#binary-files-related-to-code-you-dont-want)
+        -   [Ignoring those Unwanted
+            Files](noncode_files.md/#ignoring-those-unwanted-files)
+        -   [Auto-ignoring Unwanted
+            Files](noncode_files.md/#auto-ignoring-unwanted-files)
+        -   [Manual Ignore a File For This
+            Commit](noncode_files.md/#manual-ignore-a-file-for-this-commit)
+        -   [Automatic Adding to Ignore
+            List](noncode_files.md/#automatic-adding-to-ignore-list)
+        -   [MS Office Intermediate
+            Files](noncode_files.md/#ms-office-intermediate-files)
+        -   [Binary Document Actions](noncode_files.md/#binary-document-actions)
