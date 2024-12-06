@@ -1,4 +1,4 @@
-![Documentation](https://img.shields.io/badge/Tutorials_for_GLFHC-Yes-003333)
+![Documentation](https://img.shields.io/badge/Tutorials_for_GLFHC-Yes-brightgreen) ![Documentation](https://img.shields.io/badge/GLFHC_Templates-Yes-brightgreen)
 
 # GitHub at GLFHC 
 
