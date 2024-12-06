@@ -1,3 +1,5 @@
+![Documentation](https://img.shields.io/badge/Tutorials_for_GLFHC-Yes-003333)
+
 # GitHub at GLFHC 👋
 
 ## Introduction
