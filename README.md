@@ -1,5 +1,6 @@
-![Documentation](https://img.shields.io/badge/Documentation-GLFHC)
 # github at GLFHC
+![Documentation](https://img.shields.io/badge/Tutorials_for_GLFHC-Yes-003333)
+
 Welcome to using github here at GLFHC. For folks new to using git and github, or those totally new to Source Code Control Systems, there are tutorials on how to benefit from the tolls git provides.
 
 # Getting Help
