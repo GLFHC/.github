@@ -82,3 +82,14 @@
         -   [MS Office Intermediate
             Files](noncode_files.md/#ms-office-intermediate-files)
         -   [Binary Document Actions](noncode_files.md/#binary-document-actions)
+-   [**Working with existing
+    projects**](existing_projects.md)
+    -   [Background](existing_projects.md/#background)
+        -   [Make a git
+            folder](existing_projects.md#make-a-git-folder)
+        -   [Single File (likely SQL script for a
+            report)](existing_projects.md/#single-file-likely-sql-script-for-a-report)
+        -   [Many files in a
+            project](existing_projects.md/#many-files-in-a-project)
+    -   [Important Features of GLFHC
+        Templates](existing_projects.md/#important-features-of-glfhc-templates)
