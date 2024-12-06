@@ -1,6 +1,6 @@
 ![Documentation](https://img.shields.io/badge/Tutorials_for_GLFHC-Yes-003333)
 
-# GitHub at GLFHC 👋
+# GitHub at GLFHC 
 
 ## Introduction
 Welcome to the github instance for GLFHC. This project contains tutorials and other useful tools for using github and git within GLFHC.
