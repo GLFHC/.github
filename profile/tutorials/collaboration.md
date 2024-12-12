@@ -96,7 +96,9 @@ In the example above, there are no conflicts, so you can perform the merge, a fi
 
 ![Auto Merge](images/auto_merge.png "Auto Merge Check")
 
-When the merge is complete your main branch now has the changes from the fork pulled back in.
+When the merge is complete your main branch now has the changes from the fork pulled back in. If you used a branch instead of a 
+fork (preferred) the old branch is destroyed (you can optionally keep it, but don't) since it is now merged in to main. If you want to 
+make more changes, create a new branch.
 
 `
 
