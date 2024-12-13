@@ -27,7 +27,7 @@ Additionally, you should select the appropriate _.gitignore_ template for your l
 
 ![gitignore selection](images/gitignore.png "git ignore templates")
 
-## How to use the README.md
+## How to use the README
 
 You might be wondering why there is a section on how to use the README file, but in git that file is somewhat special. If you
 for instance click on the “bulkupdate” repository you will see a long document below banner with the list of files that tells a lot

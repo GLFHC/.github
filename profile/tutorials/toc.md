@@ -12,7 +12,7 @@
 -   [**GLFHC Creating Your First Repo
     guide**](create_first_repo.md)
     -   [Easiest Way to Create a Repo](create_first_repo.md/#easiest-way-to-create-a-repo)
-    -   [How to use the README.md](create_first_repo.md/#how-to-use-the-readme.md)
+    -   [How to use the README](create_first_repo.md/#how-to-use-the-readme)
     -   [Ignoring Unwanted Files](create_first_repo.md/#ignoring-unwanted-files)
     -   [Next](create_first_repo.md/#next)
 -   [**GLFHC Forking and Branching
