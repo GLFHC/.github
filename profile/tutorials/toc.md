@@ -85,16 +85,16 @@
             Files](noncode_files.md/#ms-office-intermediate-files)
         -   [Binary Document Actions](noncode_files.md/#binary-document-actions)
 -   [**Working with existing
-    projects**](existing_projects.md)
-    -   [Background](existing_projects.md/#background)
+    projects**](existing_project.md)
+    -   [Background](existing_project.md/#background)
         -   [Make a git
-            folder](existing_projects.md#make-a-git-folder)
+            folder](existing_project.md#make-a-git-folder)
         -   [Single File (likely SQL script for a
-            report)](existing_projects.md/#single-file-likely-sql-script-for-a-report)
+            report)](existing_project.md/#single-file-likely-sql-script-for-a-report)
         -   [Many files in a
-            project](existing_projects.md/#many-files-in-a-project)
+            project](existing_project.md/#many-files-in-a-project)
       -   [Important Features of GLFHC
-          Templates](existing_projects.md/#important-features-of-glfhc-templates)
+          Templates](existing_project.md/#important-features-of-glfhc-templates)
 - [**Managing Software Releases**](Release%20Management.md/#toc-managing-software-releases)
   - [Why Use Releases](Release%20Management.md/#toc-why-use-releases)
   - [How are Releases Named?](Release%20Management.md/#toc-how-are-releases-named)
