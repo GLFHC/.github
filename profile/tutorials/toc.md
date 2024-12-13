@@ -60,6 +60,8 @@
         -   [Collaborators And Teams](collaboration.md/#collaborators-and-teams)
         -   [User Access Management](collaboration.md/#user-access-management)
         -   [User Privileges](collaboration.md/#user-privileges)
+        - [How to work with others - i.e. how merges work in the real
+            world](collaboration.md/#how-to-work-with-others-ie-how-merges-work-in-the-real-world)
 -   [**Managing Non-Code Files in
     GitHub**](noncode_files.md)
     -   [What Non-Code Files Means](noncode_files.md/#what-non-code-files-means)
@@ -91,5 +93,11 @@
             report)](existing_projects.md/#single-file-likely-sql-script-for-a-report)
         -   [Many files in a
             project](existing_projects.md/#many-files-in-a-project)
-    -   [Important Features of GLFHC
-        Templates](existing_projects.md/#important-features-of-glfhc-templates)
+      -   [Important Features of GLFHC
+          Templates](existing_projects.md/#important-features-of-glfhc-templates)
+- [**Managing Software Releases**](Release%20Management.md/#toc-managing-software-releases)
+  - [Why Use Releases](Release%20Management.md/#toc-why-use-releases)
+  - [How are Releases Named?](Release%20Management.md/#toc-how-are-releases-named)
+  - [Creating a Release Tag](Release%20Management.md/#toc-creating-a-release-tag)
+  - [Best Practice for Release Names](Release%20Management.md/#toc-best-practice-for-release-names)
+  - [Getting the release version into your code](Release%20Management.md/#toc-getting-the-release-version-into-your-code)
