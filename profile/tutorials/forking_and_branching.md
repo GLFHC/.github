@@ -122,4 +122,6 @@ at the top right is a **Use This Template** drop-down and select "**Create a new
 
 ![Using a Template](images/use_template.png "Using a Template Repository")
 
+Then the process is the same as any other new repository except the folder contains a standard GLFHC structure and functions as seen in [this tutorial](create_first_repo.md)
+
 Suggested Next: [Automating Github](automation.md)
