@@ -74,14 +74,14 @@ In the repository main screen on the top bar, select the action button:
 ![ACtion Button](images/action_button.png "Action Button")
 
 Find the action you wish to add in the catalog that shows what actions are available. Many don't apply in our environment.
-make sure the version you select is applies, for instance there are several python validators, it is unlikely you are creating 
-a python application (that is a native application for instance to run on Windows/MacOs/Linux as a standalone app (with menubars, windows, etc), you probably built a python _package_).
-When you find the python package one, select configure, and you will see a YAML script to configure the workflow (see below)
+make sure the version you select applies, for instance there are several python validators, it is unlikely you are creating 
+a python _application_ (that is a native application for instance to run on Windows/MacOS/Linux as a standalone desktop app (with menubars, windows, etc), you probably built a python _package_).
+When you find the python package in your dev tooling, select configure, and you will see a YAML script to configure the workflow (see below)
 
 ## YAML file configuring an action
 Below we see a YAML file from the [Athena Macro Utility project](https://github.com/GLFHC/macro_render/tree/main), where you
-can see the entire workflow in action. This workflow is stored in the _.github/workflows_ folder off the root of your project. 
-The YAML file must be in there.
+can see the entire _workflow_ in action. This _workflow_ is stored in the _.github/workflows_ folder off the root of your project. 
+The YAML file must be in there, which is where github looks for what automation to run.
 
 Details at end
 ```YAML
@@ -141,7 +141,7 @@ jobs:
 
 
 Put comments in with "#" characters followed by a space. For those unfamiliar with YAML it is similar to Python in that **whitespace matters**. 
-Even worse, is the hierarchy and it is case sensitive. In the file above, top level are denoted by a label with colon for each section. In this case I kept it pretty simple and close to the default.
+Even worse, is the **hierarchy order** and YAML is case-sensitive. In the file above, top level are denoted by a label with colon for each section. In this case I kept it pretty simple and close to the default.
 
 **name:** is the name you want to call the workflow (you can leave it as the default)
 
@@ -181,5 +181,34 @@ which will look like:
 
 ## The badge
 That badge can indicate the union of all of the Steps in the YAML file. If any fail the total status is failed (a red badge).
+
+## Things to watch out for in Unit Tests
+The problem with unit tests is that they give a false sense of security. These are not-exhaustive tests typicall,
+and are typically used to catch _oopsies_ that you made breaking something (such as changing a type for a function argument).
+However, they can't simulate every scenario. Now a strict language like Java prevents a lot of egrious programming errors 
+such as wrong type since that instantly throws a sytax error. Also if you change OSs or CPU type, numbers may change formatsThe few things that unit tests to be effective fail to do,
+such as big-endian, etc. Some common unittest errors are:
+
+- use non-representative data (I had a QI tester only put "2" in a integer field for months and we didn't know that we 
+were in a 16-bit data structure so 2 always worked, but once an actual client number went in we got a range check error),
+and it is recommended to use "fuzzing" and generate a wide set of random inputs (some being invalid - but you can assert an exception in
+the test since the exception is the expected result). 
+- Don't verify thread safety. Note in python, threading is a major afterthought and so most operations will not need to worry about 
+such issues, such as iterrupts. Databases do not suffer this problem (FIFO queue with record locking - e.g. the first guy there 
+gets the key to the door, and locks it behind himself until he is done), which is what is known as a semaphore lock. If whatever
+system you are using, uses semaphores you need to test for circular dependency locking against that sempahore (in other words)
+if function A depends on B's output, which in turn depends on C's output, which depends on A's output. This will of course lock
+up in a resource wait state. This can happen either due to a circular chain as above or several things accessing a data element that is 
+partly written. Even python can suffer from this type of error, and should be included in your tests. Unless you are using the
+threading library in python you probably only need to worry abot variables that depend on external things (such a common disk file),
+- The variant of the thread safety problem is split-writes (known as **data tearing**), which is when a data element is wider than
+the system bus and to write into memory needs multiple operations to complete the write. Unlike say SqlServer, which would lock the
+records until it completes, the network drivers has no such compunction to help you out, and the memory location you are
+retrieving could be chaning underneath you, since most bus peripherals (network, disk, etc) can use DMA (Direct Memory Access) meaning they
+can write to main memory with a write split to the bus width (e.g. at 384-bit word cannot be writen on a 128-bit bus as a single write) this is true
+for your code and for system functions performing IO since the bus is the bus.
+- Failing to account for asynchronous reads/writes. When you throw something out the network port, the code reports success that the packet was sent
+  (i.e. the driver worked as intended) that did not test whether the data sent was correct or the far end recieved it. So networked
+unittests need to account for all of that
 
 Suggested Next: [How to validate SQL code projects](sql_validation.md) using the above
