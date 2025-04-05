@@ -11,6 +11,9 @@ git in your work. Tutorials can be found [here](tutorials/getting_started.md)
 
 Tutorial [Table of Contents here](tutorials/toc.md)
 
+**New Cookbook problem based tutorials**
+Go [here for problem oriented tutorials](cookbooks/intro.md)
+
 ## Getting Help
 If you need help for GitHub (such as settings) contact [Henry Feldman](mailto://hfeldman@glfhc.org)
 

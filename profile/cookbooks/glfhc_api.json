@@ -1,0 +1,94 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "GLFHC Formulary API",
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "https://api.server.test/v1"
+    }
+  ],
+  "paths": {
+    "/variants": {
+      "get": {
+        "description": "Get all variants for a NDC code (aka synonyms)",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "name",
+            "description": "name of medication",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "CODE",
+            "in": "query",
+            "description": "NDC to get variants of",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "list of NDC codes",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+      }
+    },
+    "/formulary": {
+      "get": {
+        "description": "check if a given medication is even possibly in inventory",
+		  "parameters": [
+          {
+            "in": "query",
+            "name": "codes",
+            "description": "variant NDC codes",
+            "required": true,
+            "schema": {
+				 "type": "array",
+				"items": {
+					"type": "string"
+				}
+            }
+          },
+          {
+            "name": "quantityNeeded",
+            "in": "query",
+            "description": "How many units do we need",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return if the item is inventory",
+            "content": {
+              "application/json": {
+                "schema": {
+                   "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
