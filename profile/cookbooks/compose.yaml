@@ -1,0 +1,9 @@
+services:
+  web:
+    context: app
+    target: builder
+  # flask requires a SIGINT to shut itself down properly, so we need to change
+  # docker compose's default SIGTERM message
+  stop_signal: SIGINT
+  ports:
+    - 8080:8080

@@ -13,3 +13,4 @@ So look below to see if a "recipe" matches your problems
 
 1. [Managing a Group of SQL scripts for a team](sqlteam.md)
 2. [Collaborating around an API](openapi.md)
+3. [VMs vs Containers for applications](containers.md)
