@@ -2,7 +2,8 @@
 
 ## Background 
 This is a common question that comes up as a project gets ready to deploy an application. And 
-this recipe will show when to use one vs. the other, and the implications, and how to do that.
+this recipe will show when to use one vs. the other, and the implications, and how to do that. Note, this will be
+a slightly higher text heavy recipe than others
 
 ### Virtual Machines
 The concept of Virtual Machines are not a new concept, as IBM on the original IBM 360 in the 1960s used
@@ -90,8 +91,19 @@ _Note: YAML files use indentation to denote hierarchy (similar to python, so spa
 our directory should have the following structure
 ```text
 .
+├── compose.yaml
+├── app
+    ├── Dockerfile
+    ├── requirements.txt
+    ├── rest of application files (templates, init, DB, etc)
+    └── app.py
 
 ```
+
+Not all flask applications require an app folder as the top folder, but it is convention.
+Also for this example we don't have all the other files needed to typically make a flask application, so in reality there would
+likely be your templates folder, database configuration and other classes in the folder. Also this folder is missing a package level init. but conceptually if those were there, no difference
+
 [compose.yaml](compose.yaml)
 ```yaml
 services:
@@ -110,3 +122,107 @@ second port is what host port will be assigned. In theory you can take an applic
 
 Now we need to execute our yaml recipe from above:
 
+```shell
+$ docker compose up -d
+[+] Building 1.1s (16/16) FINISHED
+ => [internal] load build definition from Dockerfile                                                                                                                                                                                       0.0s
+    ...                                                                                                                                         0.0s
+ => => naming to docker.io/library/flask_web                                                                                                                                                                                               0.0s
+[+] Running 2/2
+ ⠿ Network flask_default  Created                                                                                                                                                                                                          0.0s
+ ⠿ Container flask-web-1  Started
+```
+
+**Congrats**, you just built and started your first container!
+
+Confirm it:
+```shell
+$ docker compose ps
+NAME                COMMAND             SERVICE             STATUS              PORTS
+flask-web-1         "python3 app.py"    web                 running             0.0.0.0:8000->8000/tcp
+```
+
+Test the app (I am assuming here that the flask app running is the base flask demo app which only has one route / which returns "hello world"). We will use the _curl_ command
+to browse the port via the CLI:
+
+```shell
+$ curl localhost:8080
+Hello World!
+```
+
+To deploy this on one of the Windows servers at GLFHC, luckily windows has a built-in container
+daemon inside so you do not need docker itself to run this application. The great part is when the application
+builds into a container it will utilize the _requirements.txt_ file to load all the python packages into our python
+instance, but most importantly that is NOT the python interpreter running on the windows host. So if you load a different version
+of a critical library another applications uses, it is not running the system-wide python. The container is its own little world.
+
+## Dessert
+Now let's make our application fancier, let's imagine we have needs for a database application within our container. So for simplicity,
+let us use MySQL. Note that the **db** service is defined via an _image_ command). This is because while we could describe the entire
+MySQL installation, we don't have time for that, so luckily others have published their own docker images lik we we did for our
+flask application, and we are loading the one with mysql in it with our flask applicaiton, making our modified container
+
+To that we add a second service on top of "_backend_" (previously "_web_") which we defined in our container above:
+
+adding mysql to Compose.yaml
+```yaml
+services:
+  backend:
+    build:
+      context: backend
+      target: builder
+  db:
+    #note use MariaDB instead if you need ARM/ARM64 support
+    image: mariadb:latest
+```
+
+Now if you build it we get a service with both our flask and mysql services running. Now you might ask, "_where is the disk for this application_?" That is a non-trivial question,
+but the key to making our dessert consumable. By default containers have a little bit of disk associated with them, but that is not the best way to create and control volumes. This part of the recipe
+gets a little complicated (to pound our metaphor into the ground, this part is putting the crust on our creme brulee).
+
+```text
+.
+├── compose.yaml
+├── app
+    ├── Dockerfile
+    ├── requirements.txt
+    ├── rest of application files (templates, init, DB, etc)
+    └── app.py
+    └── /data
+      └── /mysql
+       ├──mysql files here
+
+```
+
+edit to compose.yaml
+```yaml
+services:
+  backend:
+    build:
+      context: backend
+      target: builder
+  db:
+    # note use MariaDB (MySQL fork) in case you need ARM/ARM64 support (also x86)
+    image: mariadb:latest
+    restart: always
+    volumes_from:
+      - data
+    ports:
+      - "3306:3306"
+    # volumes can be mapped to real directories at launch time via command
+    # line arguments, in this case we are binding to C:\server\data, which has to be created in the
+    # real file system
+    volumes:
+          - my-datavolume:/var/lib/mysql
+volumes:
+  my-datavolume:
+    # note volumes can be network shares as well
+```
+**CAUTION**: if you put a large database file into that database volume the container can be massive making it hard to redeploy
+
+_If you start your mysql container instance with a data directory that already contains a database (specifically, a mysql subdirectory), the $MYSQL_ROOT_PASSWORD variable should be omitted_
+
+Now why does the example above make a robust application with Kubernetes. Because above we have described, a flask server, a mysql server and a volume, which kubernetes could assure are
+always present, so kubernetes assures that those items are there, the controller knows what nodes would have for resources, so 
+say the volume dies the controller node could spin up a replacement volume on another node and does the plumbing underneath to hide the volume swap from the software. That all happens in fractions of a second
+without any human intervention nor programming from the developer, that is the magic of kubernetes, that you simply describe the state and it figures out how to acomplish it.
