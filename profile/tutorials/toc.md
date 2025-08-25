@@ -1,5 +1,5 @@
 # GitHub Tutorials Table of Contents:
--    [Markdown Documents](markdown_documents.md)   
+-    [Markdown Documents](markdown_documents.md) (how to write documents like this - GitHub has it's own [Markdown format](https://github.github.com/gfm/)
     -    [The Badge](markdown_documents.md#the-badge)
 
 -   [**GLFHC GitHub quick start guide**](getting_started.md)
