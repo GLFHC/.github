@@ -37,7 +37,8 @@ should not even be able to see Linux - _Note, some VM systems permit that inform
 1. A very heavy way to surround an application as a full copy of the OS is needed to run a single application
 2. Requires an entire OS to be configured just like a bare-metal machine would be
 3. May incur costs for another license of the OS (_varies by OS how they deal with VM licensing_)
-4. Starting a VM is like booting a machine running that OS (however long it takes to start Windows is how long it takes) 
+4. Starting a VM is like booting a machine running that OS (however long it takes to start Windows is how long it takes)
+5. Since a VM is the entire OS, crashing the kernel of a VM in theory will not take down the parent host (_note: this warranty not valid in all states_!)
 
 ### Containers
 Looking at the cons of VMs, Containers were born as a lightway to wrap an application with a very lightway minimal wrapper with all the resources needed
@@ -59,7 +60,7 @@ the application could be moved around in a cloud server farm to keep services up
 include performance so automated load balancing could be spun up quickly during atypical loads without needing further configuration.
 
 #### Pros
-1. Lightweight wrapper with applications or resources
+1. Lightweight wrapper with applications or resources (shares common OS resources)
 2. Rapid spin up/down time
 3. Can be programmatically managed via Kubernetes
 4. Can be designed to run on multiple architectures (multiarch)
@@ -72,31 +73,41 @@ include performance so automated load balancing could be spun up quickly during 
 2. Unless designed so, they only run on one architecture
 3. They don't fully emulate the OS and hardware underneath the application
 4. Need planning to make the application able to be portable
+5. A crash in a container if it crashes a shared resource like say networking, the parent machine will go down as well
 
 ## Recipe
 Let's take a scenario that we've built an application in python, the application is a webservice and uses port 8080. The easiest way to
-set up the container to host our application. Since the application is built in python we don't need to worry about the architecture
-since python is not a binary compiled application so we just need to make our container to the platorm architecture we plan to run under.
-So at GLFHC our servers are x86 based so we will plan on that, as if we set up redundancy for fault-tolerance it is unlikely 
-someone is going to sneak an ARM based server into the cluster without our knowledge.
+set up the container to host our application, is to containerize it (_versus copying the python files into a folder under the webserver or host's application area and running a batch job calling the script_). Since the application is built in python we don't need to worry about the architecture
+since python is not a binary compiled language and is live interpreted/compiled'ish so we just need to make our container for the platorm architecture we plan to run under.
+So at GLFHC our servers are x86 (Intel) based so we will plan on that, as if we set up redundancy for fault-tolerance it is unlikely 
+someone is going to sneak an ARM based server into the cluster without our knowledge, but being flexible here means we can switch any time we wish without worrying about the code.
 
-The heart of a container is a specification file that describes our resources we plan to package with the application. To build
-our application we will plan to use _docker compose_ a part of the Docker engine that makes containers on the fly through description files.
-The heart of a container is the ```compose.yaml``` file . For this recipe we will assume your application is written in the Flask
-framework in python. Flask is a lightweight web framework similar to Django and Spring-Boot in Java. Applications in written in
-Flask are called "app"
+The recipe (or Docker in general) works as a pair recipes, first making the **image** of the container, which to beat the metaphor to death,
+the **image** is the recipe that holds the instructions to the docker engine to make a running **container**. **Containers** are code that actually executes,
+while **images** are manifests with their data files.
+
+The heart of a image/container is a specification file that describes our resources we plan to package with the application. To build
+our application we will plan to use _docker_ and _Docker Compose_ a part of the Docker engine that makes container images on the fly through description files.
+The heart of a container is the ```Dockerfile``` file. For this recipe we will assume your application is written in the Flask
+framework in python. Flask is a lightweight web framework similar to _Django_ in Python or _Spring-Boot_ in Java. Applications written in
+Flask are called "app" (you can give your app a better name but internally it is "app")
 
 _Note: YAML files use indentation to denote hierarchy (similar to python, so spacing matters!)_
 
 our directory should have the following structure
 ```text
 .
+<<<<<<< Updated upstream
 ├── compose.yaml
 ├── app
     ├── Dockerfile
     ├── requirements.txt
     ├── rest of application files (templates, init, DB, etc)
     └── app.py
+=======
+..
+
+>>>>>>> Stashed changes
 
 ```
 
