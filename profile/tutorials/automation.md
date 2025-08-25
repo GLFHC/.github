@@ -195,6 +195,7 @@ formatted as:
 ![Alt Text](https://img.shields.io/badge/title_with_spaces-TAGVALUE-ColorValue)
 ```
 **Spaces** are indicated by an underscore _
+
 **ColorValue** can either be hex RGB colors or there are names (Background color of the right part (hex, rgb, rgba, hsl, hsla and css named colors supported).
 Example: fedcba
 
