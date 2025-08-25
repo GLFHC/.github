@@ -182,6 +182,36 @@ which will look like:
 ## The badge
 That badge can indicate the union of all of the Steps in the YAML file. If any fail the total status is failed (a red badge).
 
+![Badges](https://img.shields.io/badge/Badges-How_To-brightgreen)
+How can I make those cool badges like this? It's easy, these are a feature of shields.io. It is written as
+a standard tag, but in the case of Markdown we can either make static tags (like this one) or dynamic tags
+that are linked to a specific value of a function (like say a build process succeding or failing).
+
+#### Badge Syntax:
+```text
+![Badges](https://img.shields.io/badge/Badges-How_To-brightgreen)
+
+formatted as:
+![Alt Text](https://img.shields.io/badge/title_with_spaces-TAGVALUE-ColorValue)
+```
+**Spaces** are indicated by an underscore _
+**ColorValue** can either be hex RGB colors or there are names (Background color of the right part (hex, rgb, rgba, hsl, hsla and css named colors supported).
+Example: fedcba
+
+### Optional Query parameters:
+_style_
+Possible values: [flat, flat-square, plastic, for-the-badge, social]
+
+_logo_
+Icon slug from [simple-icons](https://simpleicons.org). You can click the icon title on simple-icons to copy the slug or they can be found in the slugs.md file in the simple-icons repository. Further info.
+Example: appveyor
+
+_logoColor_
+The color of the logo (hex, rgb, rgba, hsl, hsla and css named colors supported). Supported for simple-icons logos but not for custom logos.
+Example: violet
+
+
+
 ## Things to watch out for in Unit Tests
 The problem with unit tests is that they give a false sense of security. These are not-exhaustive tests typicall,
 and are typically used to catch _oopsies_ that you made breaking something (such as changing a type for a function argument).
