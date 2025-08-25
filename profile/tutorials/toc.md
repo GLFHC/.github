@@ -1,7 +1,6 @@
 # GitHub Tutorials Table of Contents:
--    [Markdown Documents](markdown_documents.md)
--    
-    - [The Badge](markdown_documents.md#the-badge)
+-    [Markdown Documents](markdown_documents.md)   
+    -    [The Badge](markdown_documents.md#the-badge)
 
 -   [**GLFHC GitHub quick start guide**](getting_started.md)
     -   [What is git?](getting_started.md/#what-is-git)
